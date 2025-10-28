@@ -2,7 +2,7 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   // Настройки для server components
-  serverExternalPackages: [],
+  serverExternalPackages: ['@prisma/client', 'prisma'],
 
   // Настройки изображений для оптимизации
   images: {
@@ -20,6 +20,14 @@ const nextConfig: NextConfig = {
 
   // Дополнительные настройки
   reactStrictMode: true,
+
+  // Настройки для Webpack (для правильной работы Prisma)
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals.push('@prisma/client')
+    }
+    return config
+  },
 }
 
 export default nextConfig
