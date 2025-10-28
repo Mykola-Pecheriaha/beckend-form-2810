@@ -1,51 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>Тест форми</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Тест форми консультації</h1>
     <form id="testForm">
-        <input type="text" id="name" placeholder="Ім'я" value="Тест Форма">
-        <input type="number" id="age" placeholder="Вік" value="25">
-        <textarea id="complaint" placeholder="Скарга">Тестова скарга з форми</textarea>
-        <button type="submit">Надіслати</button>
+      <input type="text" id="name" placeholder="Ім'я" value="Тест Форма" />
+      <input type="number" id="age" placeholder="Вік" value="25" />
+      <textarea id="complaint" placeholder="Скарга">Тестова скарга з форми</textarea>
+      <button type="submit">Надіслати</button>
     </form>
-    
+
     <div id="result"></div>
-    
+
     <script>
-        document.getElementById('testForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const data = {
-                name: document.getElementById('name').value,
-                age: document.getElementById('age').value,
-                complaint: document.getElementById('complaint').value
-            };
-            
-            console.log('Відправляємо:', data);
-            
-            try {
-                const response = await fetch('/api/consultations', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                });
-                
-                const result = await response.json();
-                console.log('Результат:', result);
-                
-                document.getElementById('result').innerHTML = 
-                    `<p>Статус: ${response.status}</p>
-                     <p>Результат: ${JSON.stringify(result, null, 2)}</p>`;
-            } catch (error) {
-                console.error('Помилка:', error);
-                document.getElementById('result').innerHTML = `<p>Помилка: ${error.message}</p>`;
-            }
-        });
+      document.getElementById('testForm').addEventListener('submit', async (e) => {
+        e.preventDefault()
+
+        const data = {
+          name: document.getElementById('name').value,
+          age: document.getElementById('age').value,
+          complaint: document.getElementById('complaint').value,
+        }
+
+        console.log('Відправляємо:', data)
+
+        try {
+          const response = await fetch('/api/consultations', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          })
+
+          const result = await response.json()
+          console.log('Результат:', result)
+
+          document.getElementById('result').innerHTML = `<p>Статус: ${response.status}</p>
+                     <p>Результат: ${JSON.stringify(result, null, 2)}</p>`
+        } catch (error) {
+          console.error('Помилка:', error)
+          document.getElementById('result').innerHTML = `<p>Помилка: ${error.message}</p>`
+        }
+      })
     </script>
-</body>
+  </body>
 </html>

@@ -6,13 +6,13 @@ import { Status } from '@prisma/client'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { 
-      name, 
-      age, 
+    const {
+      name,
+      age,
       gender,
-      complaint, 
-      phone, 
-      email, 
+      complaint,
+      phone,
+      email,
       height,
       weight,
       bmi,
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
       chronicDiseases,
       medications,
       painLevel,
-      additionalNotes
+      additionalNotes,
     } = body
 
     if (!name || !age || !complaint) {
@@ -32,19 +32,30 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Некоректний вік' }, { status: 400 })
     }
 
-    console.log('📝 Отримані дані:', { 
-      name, age, gender, complaint, phone, email, 
-      height, weight, bmi, examinations, chronicDiseases, 
-      medications, painLevel, additionalNotes 
+    console.log('📝 Отримані дані:', {
+      name,
+      age,
+      gender,
+      complaint,
+      phone,
+      email,
+      height,
+      weight,
+      bmi,
+      examinations,
+      chronicDiseases,
+      medications,
+      painLevel,
+      additionalNotes,
     })
 
     // Збереження у базу з новими полями
     const consultation = await prisma.consultation.create({
-      data: { 
-        name, 
-        age, 
+      data: {
+        name,
+        age,
         gender: gender ?? null,
-        complaint, 
+        complaint,
         phone: phone ?? null,
         email: email ?? null,
         height: height ?? null,
@@ -58,7 +69,7 @@ export async function POST(request: NextRequest) {
         status: Status.PENDING,
       },
     })
-    
+
     console.log('✅ Консультація створена:', consultation)
 
     return NextResponse.json({
@@ -68,30 +79,42 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     console.error('❌ Помилка при створенні консультації:', error)
-    
+
     // Более детальная обработка ошибок Prisma
     if (error instanceof Error) {
       console.error('❌ Повідомлення помилки:', error.message)
       console.error('❌ Стек помилки:', error.stack)
-      
+
       // Специальная обработка для Prisma ошибок
       if (error.message.includes('Prisma')) {
-        return NextResponse.json({ 
-          error: 'Помилка бази даних', 
-          details: process.env.NODE_ENV === 'development' ? error.message : 'Перевірте правильність введених даних' 
-        }, { status: 500 })
+        return NextResponse.json(
+          {
+            error: 'Помилка бази даних',
+            details:
+              process.env.NODE_ENV === 'development'
+                ? error.message
+                : 'Перевірте правильність введених даних',
+          },
+          { status: 500 }
+        )
       }
-      
-      return NextResponse.json({ 
-        error: 'Внутрішня помилка сервера', 
-        details: process.env.NODE_ENV === 'development' ? error.message : 'Спробуйте пізніше' 
-      }, { status: 500 })
+
+      return NextResponse.json(
+        {
+          error: 'Внутрішня помилка сервера',
+          details: process.env.NODE_ENV === 'development' ? error.message : 'Спробуйте пізніше',
+        },
+        { status: 500 }
+      )
     }
-    
-    return NextResponse.json({ 
-      error: 'Невідома помилка',
-      details: 'Неочікувана помилка сервера'
-    }, { status: 500 })
+
+    return NextResponse.json(
+      {
+        error: 'Невідома помилка',
+        details: 'Неочікувана помилка сервера',
+      },
+      { status: 500 }
+    )
   }
 }
 

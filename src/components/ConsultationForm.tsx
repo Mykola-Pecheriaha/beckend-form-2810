@@ -47,7 +47,7 @@ export default function ConsultationForm() {
     return { text: 'Ожиріння', color: 'text-red-600' }
   }
 
-    const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setMessage('')
@@ -55,7 +55,7 @@ export default function ConsultationForm() {
     try {
       // Валидация обязательных полей на клиенте
       if (!formData.name.trim() || !formData.age.trim() || !formData.complaint.trim()) {
-        setMessage('Заповніть всі обов\'язкові поля')
+        setMessage("Заповніть всі обов'язкові поля")
         setIsSubmitting(false)
         return
       }
@@ -70,9 +70,14 @@ export default function ConsultationForm() {
         height: formData.height ? parseInt(formData.height) : undefined,
         weight: formData.weight ? parseInt(formData.weight) : undefined,
         bmi: bmi ? Math.round(bmi * 10) / 10 : undefined,
-        examinations: formData.examinations.length > 0 ? JSON.stringify(formData.examinations) : undefined,
-        chronicDiseases: formData.hasChronicDiseases && formData.chronicDiseases ? formData.chronicDiseases : undefined,
-        medications: formData.takesMedications && formData.medications ? formData.medications : undefined,
+        examinations:
+          formData.examinations.length > 0 ? JSON.stringify(formData.examinations) : undefined,
+        chronicDiseases:
+          formData.hasChronicDiseases && formData.chronicDiseases
+            ? formData.chronicDiseases
+            : undefined,
+        medications:
+          formData.takesMedications && formData.medications ? formData.medications : undefined,
         painLevel: formData.painLevel > 0 ? parseInt(formData.painLevel.toString()) : undefined,
         additionalNotes: formData.additionalNotes || undefined,
       }
@@ -88,7 +93,7 @@ export default function ConsultationForm() {
       })
 
       console.log('Статус відповіді:', response.status)
-      
+
       const result = await response.json()
       console.log('Результат сервера:', result)
 
@@ -124,9 +129,11 @@ export default function ConsultationForm() {
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value, type } = e.target
-    
+
     if (type === 'checkbox') {
       const target = e.target as HTMLInputElement
       setFormData((prev) => ({ ...prev, [name]: target.checked }))
@@ -156,10 +163,13 @@ export default function ConsultationForm() {
           <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
             👤 Інформація про пацієнта
           </h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Ім&apos;я *
               </label>
               <input
@@ -175,7 +185,10 @@ export default function ConsultationForm() {
             </div>
 
             <div>
-              <label htmlFor="age" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="age"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Вік *
               </label>
               <input
@@ -193,7 +206,10 @@ export default function ConsultationForm() {
             </div>
 
             <div>
-              <label htmlFor="gender" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="gender"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Стать
               </label>
               <select
@@ -210,7 +226,10 @@ export default function ConsultationForm() {
             </div>
 
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="phone"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Телефон
               </label>
               <input
@@ -225,7 +244,10 @@ export default function ConsultationForm() {
             </div>
 
             <div>
-              <label htmlFor="height" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="height"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Ріст (см)
               </label>
               <input
@@ -242,7 +264,10 @@ export default function ConsultationForm() {
             </div>
 
             <div>
-              <label htmlFor="weight" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="weight"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Вага (кг)
               </label>
               <input
@@ -283,9 +308,12 @@ export default function ConsultationForm() {
           <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
             📝 Скарги пацієнта
           </h3>
-          
+
           <div>
-            <label htmlFor="complaint" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label
+              htmlFor="complaint"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
               Опишіть скарги *
             </label>
             <textarea
@@ -306,7 +334,7 @@ export default function ConsultationForm() {
           <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
             🧪 Які маєте обстеження
           </h3>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
             {['Огляд', 'Аналізи', 'ЕКГ', 'Рентген', 'УЗД', 'КТ', 'МРТ'].map((exam) => (
               <label key={exam} className="flex items-center">
@@ -327,7 +355,7 @@ export default function ConsultationForm() {
           <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
             🩺 Медична історія
           </h3>
-          
+
           <div className="space-y-4">
             {/* Хронічні хвороби */}
             <div>
@@ -340,7 +368,7 @@ export default function ConsultationForm() {
                     type="radio"
                     name="hasChronicDiseases"
                     checked={formData.hasChronicDiseases}
-                    onChange={() => setFormData(prev => ({ ...prev, hasChronicDiseases: true }))}
+                    onChange={() => setFormData((prev) => ({ ...prev, hasChronicDiseases: true }))}
                     className="mr-2 text-blue-600 focus:ring-blue-500"
                   />
                   <span className="text-sm text-gray-700 dark:text-gray-300">Так</span>
@@ -350,7 +378,13 @@ export default function ConsultationForm() {
                     type="radio"
                     name="hasChronicDiseases"
                     checked={!formData.hasChronicDiseases}
-                    onChange={() => setFormData(prev => ({ ...prev, hasChronicDiseases: false, chronicDiseases: '' }))}
+                    onChange={() =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        hasChronicDiseases: false,
+                        chronicDiseases: '',
+                      }))
+                    }
                     className="mr-2 text-blue-600 focus:ring-blue-500"
                   />
                   <span className="text-sm text-gray-700 dark:text-gray-300">Ні</span>
@@ -379,7 +413,7 @@ export default function ConsultationForm() {
                     type="radio"
                     name="takesMedications"
                     checked={formData.takesMedications}
-                    onChange={() => setFormData(prev => ({ ...prev, takesMedications: true }))}
+                    onChange={() => setFormData((prev) => ({ ...prev, takesMedications: true }))}
                     className="mr-2 text-blue-600 focus:ring-blue-500"
                   />
                   <span className="text-sm text-gray-700 dark:text-gray-300">Так</span>
@@ -389,7 +423,9 @@ export default function ConsultationForm() {
                     type="radio"
                     name="takesMedications"
                     checked={!formData.takesMedications}
-                    onChange={() => setFormData(prev => ({ ...prev, takesMedications: false, medications: '' }))}
+                    onChange={() =>
+                      setFormData((prev) => ({ ...prev, takesMedications: false, medications: '' }))
+                    }
                     className="mr-2 text-blue-600 focus:ring-blue-500"
                   />
                   <span className="text-sm text-gray-700 dark:text-gray-300">Ні</span>
@@ -439,9 +475,12 @@ export default function ConsultationForm() {
           <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
             💬 Додаткові коментарі
           </h3>
-          
+
           <div>
-            <label htmlFor="additionalNotes" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label
+              htmlFor="additionalNotes"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
               Додаткові замітки
             </label>
             <textarea
