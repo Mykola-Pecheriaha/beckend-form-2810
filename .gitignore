@@ -39,3 +39,23 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Tailwind
+.tailwindcss-cache
+
+# Turbopack
+.turbo
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# Database
+dev.db
+dev.db-journal
+*.db
+*.db-journal
+
+# Prisma
+/src/generated/prisma

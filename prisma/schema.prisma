@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+model Consultation {
+  id               Int      @id @default(autoincrement())
+  name             String
+  age              String
+  gender           String?
+  phone            String?
+  email            String?
+  height           Int?     // ріст в см
+  weight           Int?     // вага в кг
+  bmi              Float?   // індекс маси тіла
+  complaint        String
+  examinations     String?  // обстеження (JSON string)
+  chronicDiseases  String?  // хронічні хвороби
+  medications      String?  // ліки що приймає
+  painLevel        Int?     // рівень болю 0-10
+  additionalNotes  String?  // додаткові коментарі
+  status           Status   @default(PENDING)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@map("consultations")
+}
+
+enum Status {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
