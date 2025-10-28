@@ -1,52 +1,14 @@
-nohup: ignoring input
 yarn run v1.22.22
 $ next dev --turbo
- ⚠ Port 3000 is in use by an unknown process, using available port 3001 instead.
    ▲ Next.js 16.0.0 (Turbopack)
-   - Local:        http://localhost:3001
-   - Network:      http://10.255.255.254:3001
+   - Local:        http://localhost:3000
+   - Network:      http://10.255.255.254:3000
    - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 806ms
-📝 Отримані дані: {
-  name: 'Тест Пациент',
-  age: '30',
-  gender: 'Чоловік',
-  complaint: 'Тестова скарга',
-  phone: '+380501234567',
-  email: undefined,
-  height: 180,
-  weight: 75,
-  bmi: 23.1,
-  examinations: '["Огляд", "Аналізи"]',
-  chronicDiseases: undefined,
-  medications: undefined,
-  painLevel: 5,
-  additionalNotes: undefined
-}
-prisma:query INSERT INTO `main`.`consultations` (`name`, `age`, `gender`, `phone`, `email`, `height`, `weight`, `bmi`, `complaint`, `examinations`, `chronicDiseases`, `medications`, `painLevel`, `additionalNotes`, `status`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) RETURNING `id` AS `id`, `name` AS `name`, `age` AS `age`, `gender` AS `gender`, `phone` AS `phone`, `email` AS `email`, `height` AS `height`, `weight` AS `weight`, `bmi` AS `bmi`, `complaint` AS `complaint`, `examinations` AS `examinations`, `chronicDiseases` AS `chronicDiseases`, `medications` AS `medications`, `painLevel` AS `painLevel`, `additionalNotes` AS `additionalNotes`, `status` AS `status`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`
-✅ Консультація створена: {
-  id: 7,
-  name: 'Тест Пациент',
-  age: '30',
-  gender: 'Чоловік',
-  phone: '+380501234567',
-  email: null,
-  height: 180,
-  weight: 75,
-  bmi: 23.1,
-  complaint: 'Тестова скарга',
-  examinations: '["Огляд", "Аналізи"]',
-  chronicDiseases: null,
-  medications: null,
-  painLevel: 5,
-  additionalNotes: null,
-  status: 'PENDING',
-  createdAt: 2025-10-28T16:15:46.874Z,
-  updatedAt: 2025-10-28T16:15:46.874Z
-}
- POST /api/consultations 200 in 532ms (compile: 481ms, render: 51ms)
+ ✓ Ready in 600ms
+prisma:query SELECT `main`.`consultations`.`id`, `main`.`consultations`.`name`, `main`.`consultations`.`age`, `main`.`consultations`.`gender`, `main`.`consultations`.`phone`, `main`.`consultations`.`email`, `main`.`consultations`.`height`, `main`.`consultations`.`weight`, `main`.`consultations`.`bmi`, `main`.`consultations`.`complaint`, `main`.`consultations`.`examinations`, `main`.`consultations`.`chronicDiseases`, `main`.`consultations`.`medications`, `main`.`consultations`.`painLevel`, `main`.`consultations`.`additionalNotes`, `main`.`consultations`.`status`, `main`.`consultations`.`createdAt`, `main`.`consultations`.`updatedAt` FROM `main`.`consultations` WHERE 1=1 ORDER BY `main`.`consultations`.`createdAt` DESC LIMIT ? OFFSET ?
+ GET /api/consultations 200 in 426ms (compile: 397ms, render: 29ms)
 error Command failed with signal "SIGTERM".
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 [?25h
