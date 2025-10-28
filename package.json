@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "yarn db:generate && next build",
+    "build": "yarn db:generate && next build --webpack",
     "start": "next start",
     "postinstall": "prisma generate --schema=./prisma/schema.prisma",
     "lint": "eslint .",

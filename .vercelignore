@@ -1,5 +1,6 @@
 # Development files
-*.log
+
+\*.log
 .DS_Store
 .env.local
 .env.development.local
@@ -7,28 +8,34 @@
 .env.production.local
 
 # Database files
+
 dev.db
 dev.db-journal
-*.db
-*.db-journal
+_.db
+_.db-journal
 
 # Node modules (handled by Vercel)
+
 node_modules
 
 # Build files (will be regenerated)
+
 .next
 .turbo
 
 # IDE files
+
 .vscode
 .idea
 
 # Test files
+
 coverage
-*.test.ts
-*.test.tsx
-*.spec.ts
-*.spec.tsx
+_.test.ts
+_.test.tsx
+_.spec.ts
+_.spec.tsx
 
 # Scripts (keep them but ignore logs)
-scripts/*.log
+
+scripts/\*.log

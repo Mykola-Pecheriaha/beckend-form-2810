@@ -21,7 +21,10 @@ const nextConfig: NextConfig = {
   // Дополнительные настройки
   reactStrictMode: true,
 
-  // Настройки для Webpack (для правильной работы Prisma)
+  // Конфигурация для Turbopack
+  turbopack: {},
+
+  // Настройки для Webpack (для правильной работы Prisma в Webpack режиме)
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.externals.push('@prisma/client')
