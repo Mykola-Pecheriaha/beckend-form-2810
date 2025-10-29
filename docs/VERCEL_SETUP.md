@@ -1,34 +1,67 @@
 # Vercel Deployment Guide
 
-## Настройки переменных окружения в Vercel
+## Настройки переменных окружения в Vercel Dashboard
 
-1. **Обязательная переменная:**
+### Пошаговая инструкция:
+
+1. **Откройте ваш проект в Vercel Dashboard**
+   - Перейдите на https://vercel.com/dashboard
+   - Выберите проект `beckend-form-2810`
+
+2. **Перейдите в настройки проекта**
+   - Нажмите на вкладку "Settings"
+   - В боковом меню выберите "Environment Variables"
+
+3. **Добавьте переменную DATABASE_URL**
+
    ```
-   DATABASE_URL = "your_database_connection_string"
+   Name: DATABASE_URL
+   Value: your_database_connection_string
    ```
 
-2. **Для production рекомендуется PostgreSQL:**
-   ```
-   DATABASE_URL = "postgresql://username:password@host:5432/database"
-   ```
+4. **Выберите окружения для переменной:**
+   - ✅ Production
+   - ✅ Preview
+   - ✅ Development
 
-3. **Для тестирования можно использовать SQLite:**
-   ```
-   DATABASE_URL = "file:./dev.db"
-   ```
+5. **Нажмите "Save"**
+
+### Варианты значений DATABASE_URL:
+
+**Для production (рекомендуется PostgreSQL):**
+
+```
+DATABASE_URL="postgresql://username:password@host:5432/database"
+```
+
+**Для тестирования (SQLite):**
+
+```
+DATABASE_URL="file:./dev.db"
+```
+
+**Для Prisma Postgres (облачная БД):**
+
+```
+DATABASE_URL="prisma://username:password@host/database"
+```
 
 ## Настройки Build & Development в Vercel Dashboard
 
 ### Build Command
+
 Vercel автоматически использует: `yarn build`
 
-### Install Command  
+### Install Command
+
 Vercel автоматически использует: `yarn install --frozen-lockfile`
 
 ### Output Directory
+
 `.next`
 
 ### Node.js Version
+
 `18.x` или выше
 
 ## Важные моменты
@@ -41,14 +74,17 @@ Vercel автоматически использует: `yarn install --frozen-l
 ## Возможные проблемы и решения
 
 ### Если появляется ошибка "Status not exported"
+
 - Убедитесь, что DATABASE_URL настроена
 - Проверьте, что Prisma Client генерируется правильно
 
 ### Если Vercel пытается использовать npm
+
 - Проверьте, что yarn.lock присутствует в репозитории
 - Убедитесь, что package-lock.json удален из git
 
 ### Если сборка падает с timeout
+
 - Проверьте сложность миграций Prisma
 - Рассмотрите использование Prisma Migrate Deploy вместо Dev
 
