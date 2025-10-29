@@ -18,6 +18,10 @@ _.db-journal
 
 node_modules
 
+# Package manager lock files (we use yarn.lock only)
+package-lock.json
+npm-shrinkwrap.json
+
 # Build files (will be regenerated)
 
 .next

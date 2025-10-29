@@ -1,6 +1,6 @@
 {
   "framework": "nextjs",
-  "buildCommand": "npx prisma generate --schema=./prisma/schema.prisma && npx next build --webpack",
+  "buildCommand": "yarn build",
   "installCommand": "yarn install --frozen-lockfile",
   "outputDirectory": ".next",
   "functions": {
