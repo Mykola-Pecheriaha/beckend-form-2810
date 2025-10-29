@@ -19,6 +19,8 @@
    Value: your_database_connection_string
    ```
 
+   📋 **Где взять строку подключения?** См. [DATABASE_SETUP.md](DATABASE_SETUP.md)
+
 4. **Выберите окружения для переменной:**
    - ✅ Production
    - ✅ Preview

@@ -10,26 +10,51 @@ DATABASE_URL = "ваша_строка_подключения_к_БД"
 
 **Важно:** Отметьте все три окружения: Production, Preview, Development
 
-## 2. Примеры DATABASE_URL
+## 2. Где взять DATABASE_URL
 
-### PostgreSQL (рекомендуется для production):
+### 🐘 PostgreSQL
+
+#### Vercel Postgres (рекомендуется):
+1. В Vercel Dashboard → Storage → Create Database → Postgres
+2. Скопируйте POSTGRES_URL из созданной БД
+
+#### Supabase (бесплатно):
+1. https://supabase.com → New Project
+2. Settings → Database → Connection string
 ```
-postgresql://username:password@host:5432/database_name
+postgresql://postgres:[PASSWORD]@[HOST]:5432/postgres
 ```
 
-### SQLite (для тестирования):
+#### Railway (бесплатно):
+1. https://railway.app → New Project → PostgreSQL
+2. Variables → DATABASE_URL
+```
+postgresql://postgres:[PASSWORD]@[HOST]:5432/railway
+```
+
+#### Neon (бесплатно):
+1. https://neon.tech → Create Project
+2. Dashboard → Connection string
+```
+postgresql://[USER]:[PASSWORD]@[HOST]/[DATABASE]?sslmode=require
+```
+
+### 🗄️ SQLite (только для разработки)
 ```
 file:./dev.db
 ```
 
-### Prisma Postgres:
+### ☁️ Prisma Postgres
+1. https://console.prisma.io → Create workspace
+2. Create database → Copy connection string
 ```
-prisma://username:password@host/database
+prisma://[API_KEY]@[HOST]/[DATABASE]
 ```
 
 ## 3. Проверка развертывания
 
 После добавления переменной:
+
 1. Vercel автоматически пересоберет проект
 2. Проверьте логи сборки на наличие ошибок
 3. Откройте развернутое приложение
