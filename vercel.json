@@ -1,14 +1,9 @@
 {
-  "framework": "nextjs",
-  "buildCommand": "yarn build",
-  "installCommand": "yarn install --frozen-lockfile",
-  "outputDirectory": ".next",
+  "version": 2,
   "functions": {
-    "app/api/**/*.ts": {
-      "maxDuration": 30
-    }
-  },
-  "env": {
-    "DATABASE_URL": "$DATABASE_URL"
+    "pages/api/**/*.ts": { "memory": 1024, "maxDuration": 10 },
+    "pages/api/**/*.js": { "memory": 1024, "maxDuration": 10 },
+    "app/api/**/*.ts": { "memory": 1024, "maxDuration": 10 },
+    "app/api/**/*.js": { "memory": 1024, "maxDuration": 10 }
   }
 }
