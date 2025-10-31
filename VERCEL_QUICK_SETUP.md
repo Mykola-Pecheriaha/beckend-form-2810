@@ -15,38 +15,48 @@ DATABASE_URL = "ваша_строка_подключения_к_БД"
 ### 🐘 PostgreSQL
 
 #### Vercel Postgres (рекомендуется):
+
 1. В Vercel Dashboard → Storage → Create Database → Postgres
 2. Скопируйте POSTGRES_URL из созданной БД
 
 #### Supabase (бесплатно):
+
 1. https://supabase.com → New Project
 2. Settings → Database → Connection string
+
 ```
 postgresql://postgres:[PASSWORD]@[HOST]:5432/postgres
 ```
 
 #### Railway (бесплатно):
+
 1. https://railway.app → New Project → PostgreSQL
 2. Variables → DATABASE_URL
+
 ```
 postgresql://postgres:[PASSWORD]@[HOST]:5432/railway
 ```
 
 #### Neon (бесплатно):
+
 1. https://neon.tech → Create Project
 2. Dashboard → Connection string
+
 ```
 postgresql://[USER]:[PASSWORD]@[HOST]/[DATABASE]?sslmode=require
 ```
 
 ### 🗄️ SQLite (только для разработки)
+
 ```
 file:./dev.db
 ```
 
 ### ☁️ Prisma Postgres
+
 1. https://console.prisma.io → Create workspace
 2. Create database → Copy connection string
+
 ```
 prisma://[API_KEY]@[HOST]/[DATABASE]
 ```
